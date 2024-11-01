@@ -27,19 +27,23 @@
           Essential Links
         </q-item-label>
 
-        <q-item
+        <!-- Zamjena q-item s router-link -->
+        <router-link
           v-for="link in linksList"
           :key="link.title"
-          @click="navigateTo(link.link)"
+          :to="link.link"
+          class="cursor-pointer"
         >
-          <q-item-section avatar>
-            <q-icon :name="link.icon" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>{{ link.title }}</q-item-label>
-            <q-item-label caption>{{ link.caption }}</q-item-label>
-          </q-item-section>
-        </q-item>
+          <q-item>
+            <q-item-section avatar>
+              <q-icon :name="link.icon" />
+            </q-item-section>
+            <q-item-section>
+              <q-item-label>{{ link.title }}</q-item-label>
+              <q-item-label caption>{{ link.caption }}</q-item-label>
+            </q-item-section>
+          </q-item>
+        </router-link>
       </q-list>
     </q-drawer>
 
@@ -103,12 +107,10 @@ const linksList = [
 function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value
 }
-
-function navigateTo(link) {
-  router.push(link)
-}
 </script>
 
 <style scoped>
-/* Ovdje možete dodati stilove specifične za ovaj layout */
+.cursor-pointer {
+  cursor: pointer; /* Promijenite pokazivač kada se miša pomakne iznad linkova */
+}
 </style>
